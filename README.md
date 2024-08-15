@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # **Agenda Dendê**
 
 Este projeto foi desenvolvido como avaliação da disciplina de *Linguagem de Programação II*. A Agenda Dendê é um sistema de marcação de consultas que possui como objetivo principal informatizar o processo de marcação e agendamento de consultas médicas. Tornando fácil requisitar a marcação de consultas e agendamento da mesmas.
@@ -226,3 +227,6 @@ erDiagram
         LocalDateTime dateAndTimeConsultation
     }
 ``````
+=======
+# AgendaDende_oxeMarqueiv2
+>>>>>>> 1f349ee5f4e30c0df9f140e5a1593085123696bd
