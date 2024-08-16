@@ -601,7 +601,6 @@ public class AddUser extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Todos os campos obrigatórios devem ser preenchidos");
         }
-    JOptionPane.showMessageDialog(null, "Usuario Cadastrado com Sucesso");
     ManageUserSelect telaUser = new ManageUserSelect();
     this.dispose();
     telaUser.setVisible(true);
