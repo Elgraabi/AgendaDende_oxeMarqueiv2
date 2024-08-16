@@ -248,6 +248,11 @@ public class PatientSelect extends javax.swing.JFrame {
 
         btnEdit.setBackground(new java.awt.Color(255, 255, 51));
         btnEdit.setText("Editar");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         btnSchedule.setBackground(new java.awt.Color(0, 255, 153));
         btnSchedule.setText("Agendar Consulta");
@@ -379,6 +384,14 @@ public class PatientSelect extends javax.swing.JFrame {
     private void TablePatientAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_TablePatientAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_TablePatientAncestorAdded
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        String sigTapPatient = (String) TablePatient.getValueAt(TablePatient.getSelectedRow(), 2);
+        EditPatient inicialEditPatient = new EditPatient();
+        this.dispose();
+        inicialEditPatient.setVisible(true);
+    }//GEN-LAST:event_btnEditActionPerformed
 
     private void carregar() {
 
