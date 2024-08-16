@@ -363,7 +363,8 @@ public class ManageUserSelect extends javax.swing.JFrame {
     }
     
     private void btn_NovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NovoUsuarioActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:   
+        
         AddUser telaUserSelect = new AddUser();
         this.dispose();
         telaUserSelect.setVisible(true);

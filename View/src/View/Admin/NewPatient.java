@@ -282,6 +282,11 @@ public class NewPatient extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tel1CampoTextoFormatado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tel1CampoTextoFormatadoActionPerformed(evt);
+            }
+        });
 
         try {
             tel2CampoTextoFormatado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
@@ -576,6 +581,10 @@ public class NewPatient extends javax.swing.JFrame {
         this.dispose();
         telaHome.setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void tel1CampoTextoFormatadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tel1CampoTextoFormatadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tel1CampoTextoFormatadoActionPerformed
 
     /**
      * @param args the command line arguments

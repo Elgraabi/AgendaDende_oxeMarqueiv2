@@ -5,7 +5,6 @@ import Modelo.Entidades.AgentePublico;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import org.jasypt.util.password.BasicPasswordEncryptor;
 import Modelo.DAO.AgentePublicoDAO;
 
 public class AgentePublicoDAOJDBC implements AgentePublicoDAO {
@@ -13,17 +12,17 @@ public class AgentePublicoDAOJDBC implements AgentePublicoDAO {
 
     @Override
     public void insert(AgentePublico publicAgent) {
-        String sql = "INSERT INTO PUBLIC_AGENT(name, CPF, RG, phoneNumber1, phoneNumber2, dateOfBirth, createdAt, address, email, userr, password, typeUser) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO PUBLIC_AGENT(name, CPF, RG, phoneNumber1, phoneNumber2, dateOfBirth, createdAt, address, email, userr, password, typeUser, status) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pstm =  null;
 
         try {
             conn = FabricaDeConexao.getConnection();
             pstm = conn.prepareStatement(sql);
             
-            BasicPasswordEncryptor criptografador = new BasicPasswordEncryptor();
+            /*BasicPasswordEncryptor criptografador = new BasicPasswordEncryptor();
             String senhaCriptografada = criptografador
-                    .encryptPassword(publicAgent.getPassword());
+                    .encryptPassword(publicAgent.getPassword());*/
             
             pstm.setString(1, publicAgent.getName());
             pstm.setString(2, publicAgent.getCPF());
@@ -35,8 +34,9 @@ public class AgentePublicoDAOJDBC implements AgentePublicoDAO {
             pstm.setString(8, publicAgent.getAddress());
             pstm.setString(9, publicAgent.getEmail());
             pstm.setString(10, publicAgent.getUser());
-            pstm.setString(11, senhaCriptografada);
+            pstm.setString(11, publicAgent.getPassword());
             pstm.setString(12, publicAgent.getTypeUser());
+            pstm.setString(13, publicAgent.getStatus());
 
             pstm.execute();
 

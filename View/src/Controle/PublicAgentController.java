@@ -9,6 +9,7 @@ import Modelo.DAO.impl.ClinicaDAOJDBC;
 import Modelo.Entidades.AgentePublico;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,6 +35,15 @@ public class PublicAgentController {
         }
     }
 
+    public void inserirAgentePublico(AgentePublico publicAgent) {
+        try {
+            AgentePublicoDAOJDBC agentePublicoDAOJDBC = new AgentePublicoDAOJDBC();
+            agentePublicoDAOJDBC.insert(publicAgent);
+            JOptionPane.showMessageDialog(null, "Usuario Cadastrado com Sucesso!");
+        } catch (Exception e) {
+        }
+    }
+    
     public List<AgentePublico> buscarAgente(String nomeAgente) {
         List<AgentePublico> retorno = new ArrayList<>();
         try {
