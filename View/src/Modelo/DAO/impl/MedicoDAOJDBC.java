@@ -201,27 +201,6 @@ public class MedicoDAOJDBC implements MedicoDAO {
     }
 
     @Override
-    public void disable(Medico doctor) {
-        PreparedStatement pstm = null;
-        ResultSet rs = null;
-
-        try {
-            conn = FabricaDeConexao.getConnection();
-            pstm = conn.prepareStatement(
-                    "UPDATE DOCTOR SET status = ? WHERE idDoctor = ?"
-            );
-            pstm.setString(1, "desativado");
-            pstm.setInt(2, doctor.getIdDoctor());
-            pstm.executeUpdate();
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            FabricaDeConexao.closeStatement(pstm);
-            FabricaDeConexao.closeConnection(conn);
-        }
-    }
-
-    @Override
     public List<Medico> findBySpecialty(String specialty) {
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -297,5 +276,28 @@ public class MedicoDAOJDBC implements MedicoDAO {
     @Override
     public void update(String phoneNumber1, String phoneNumber2, String email, String status, Integer idDoctor) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean disable(Integer idMedico) {
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+
+        try {
+            conn = FabricaDeConexao.getConnection();
+            pstm = conn.prepareStatement(
+                    "UPDATE DOCTOR SET status = ? WHERE idDoctor = ?"
+            );
+            pstm.setString(1, "inativo");
+            pstm.setInt(2, idMedico);
+            pstm.executeUpdate();
+            return true;
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            FabricaDeConexao.closeStatement(pstm);
+            FabricaDeConexao.closeConnection(conn);
+        }
+        return false;
     }
 }

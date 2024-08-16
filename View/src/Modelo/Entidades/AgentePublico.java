@@ -56,7 +56,9 @@ public class AgentePublico extends Pessoa {
         this.typeUser = typeUser;
     }
 
-    public AgentePublico(Integer idPublicAgent, String name, String CPF, String RG, String phoneNumber1, String phoneNumber2, LocalDate dateOfBirth, String address, String email, String typeuser, String userr, String password) {
+    public AgentePublico(Integer idPublicAgent, String name, String CPF, String RG, 
+            String phoneNumber1, String phoneNumber2, LocalDate dateOfBirth, String address, 
+            String email, String typeuser, String userr, String password, String status) {
         super(name, CPF, RG, phoneNumber1, phoneNumber2, dateOfBirth, address, email);
         
         this.idPublicAgent = idPublicAgent;
@@ -64,6 +66,7 @@ public class AgentePublico extends Pessoa {
         this.email = email;
         this.password = password;
         this.user = userr;
+        this.status = status;
     }
     
 

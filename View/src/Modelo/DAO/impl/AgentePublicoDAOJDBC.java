@@ -96,7 +96,8 @@ public class AgentePublicoDAOJDBC implements AgentePublicoDAO {
                         rs.getString("email"),
                         rs.getString("typeuser"),
                         rs.getString("userr"),
-                        rs.getString("password")
+                        rs.getString("password"),
+                        rs.getString("status")
                 );
             }
             return null;
@@ -133,7 +134,10 @@ public class AgentePublicoDAOJDBC implements AgentePublicoDAO {
                         rs.getDate("dateOfBirth").toLocalDate(),
                         rs.getString("address"),
                         rs.getString("email"),
-                        rs.getString("typeUser")
+                        rs.getString("typeuser"),
+                        rs.getString("userr"),
+                        rs.getString("password"),
+                        rs.getString("status")
                 );
                 listPublicAgent.add(publicAgent);
             }
@@ -188,24 +192,26 @@ public class AgentePublicoDAOJDBC implements AgentePublicoDAO {
     }
     
     @Override
-    public void disable(Integer idPublicAgent) {
+    public boolean disable(Integer idPublicAgent) {
         PreparedStatement pstm = null;
         ResultSet rs = null;
 
         try {
             conn = FabricaDeConexao.getConnection();
             pstm = conn.prepareStatement(
-                    "UPDATE PUBLIC_AGENT SET status = ? WHERE idClinic = ?"
+                    "UPDATE PUBLIC_AGENT SET status = ? WHERE idPublicAgent = ?"
             );
-            pstm.setString(1, "desativado");
+            pstm.setString(1, "inativo");
             pstm.setInt(2, idPublicAgent);
             pstm.executeUpdate();
+            return true;
         }catch (SQLException e) {
             e.printStackTrace();
         }finally {
             FabricaDeConexao.closeStatement(pstm);
             FabricaDeConexao.closeConnection(conn);
         }
+        return false;
     }
 
     @Override

@@ -11,5 +11,5 @@ public interface ClinicaDAO {
     void update(String email, Integer idClinic);
     Clinica findByID(Integer idClinic);
     List<Clinica> findAll();
-    void disable(Clinica clinic);
+    boolean disable(Integer idClinica);
 }

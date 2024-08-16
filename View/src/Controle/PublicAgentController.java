@@ -5,6 +5,7 @@
 package Controle;
 
 import Modelo.DAO.impl.AgentePublicoDAOJDBC;
+import Modelo.DAO.impl.ClinicaDAOJDBC;
 import Modelo.Entidades.AgentePublico;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +71,16 @@ public class PublicAgentController {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+    
+    public boolean desativarAgente(int idAgente){
+        try {
+            AgentePublicoDAOJDBC agentePublicoDAOJDBC = new AgentePublicoDAOJDBC();
+            return agentePublicoDAOJDBC.disable(idAgente);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
     }
 
 }

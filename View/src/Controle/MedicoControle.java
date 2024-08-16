@@ -4,6 +4,7 @@
  */
 package Controle;
 
+import Modelo.DAO.impl.ClinicaDAOJDBC;
 import Modelo.DAO.impl.MedicoDAOJDBC;
 import Modelo.Entidades.Clinica;
 import Modelo.Entidades.Medico;
@@ -64,5 +65,15 @@ public class MedicoControle {
         } catch (Exception e) {
             e.getStackTrace();
         }
+    }
+    
+    public boolean desativarMedico(int idMedico){
+        try {
+            MedicoDAOJDBC medicoDAOJDBC = new MedicoDAOJDBC();
+            return medicoDAOJDBC.disable(idMedico);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
     }
 }
