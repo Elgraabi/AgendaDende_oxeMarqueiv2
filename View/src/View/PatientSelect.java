@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PatientSelect extends javax.swing.JFrame {
     private DefaultTableModel modeloLista = new DefaultTableModel();
-    private int idPacienteSelecionado;
+    private static int idPacienteSelecionado;
     /**
      * Creates new form Login
      */
@@ -319,7 +319,9 @@ public class PatientSelect extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    public int getIdPacient () {
+        return this.idPacienteSelecionado;
+    }
     private void btnNewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPatientActionPerformed
         NewPatient telaNovoPaciente = new NewPatient();
         this.dispose();
