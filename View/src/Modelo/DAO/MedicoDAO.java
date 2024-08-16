@@ -14,5 +14,5 @@ public interface MedicoDAO {
     List<Medico> findBySpecialty(String specialty);
     List<Medico> findAll();
     List<String> findAllSpecialty();
-    void disable(Medico doctor);
+    boolean disable(Integer idMedico);
 }

@@ -202,7 +202,7 @@ public class ClinicaDAOJDBC implements ClinicaDAO {
     }
 
     @Override
-    public void disable(Clinica clinic) {
+    public boolean disable(Integer idClinica) {
         PreparedStatement pstm = null;
         ResultSet rs = null;
 
@@ -211,14 +211,16 @@ public class ClinicaDAOJDBC implements ClinicaDAO {
             pstm = conn.prepareStatement(
                     "UPDATE CLINIC SET status = ? WHERE idClinic = ?"
             );
-            pstm.setString(1, "desativado");
-            pstm.setInt(2, clinic.getIdClinic());
+            pstm.setString(1, "inativo");
+            pstm.setInt(2, idClinica);
             pstm.executeUpdate();
+            return true;
         }catch (SQLException e) {
             e.printStackTrace();
         }finally {
             FabricaDeConexao.closeStatement(pstm);
             FabricaDeConexao.closeConnection(conn);
         }
+        return false;
     }
 }

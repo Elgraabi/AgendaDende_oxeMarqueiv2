@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PatientSelect extends javax.swing.JFrame {
     private DefaultTableModel modeloLista = new DefaultTableModel();
-    private int idPacienteSelecionado;
+    private static int idPacienteSelecionado;
     /**
      * Creates new form Login
      */
@@ -248,6 +248,11 @@ public class PatientSelect extends javax.swing.JFrame {
 
         btnEdit.setBackground(new java.awt.Color(255, 255, 51));
         btnEdit.setText("Editar");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         btnSchedule.setBackground(new java.awt.Color(0, 255, 153));
         btnSchedule.setText("Agendar Consulta");
@@ -319,7 +324,9 @@ public class PatientSelect extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    public int getIdPacient () {
+        return this.idPacienteSelecionado;
+    }
     private void btnNewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPatientActionPerformed
         NewPatient telaNovoPaciente = new NewPatient();
         this.dispose();
@@ -377,6 +384,10 @@ public class PatientSelect extends javax.swing.JFrame {
     private void TablePatientAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_TablePatientAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_TablePatientAncestorAdded
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditActionPerformed
 
     private void carregar() {
 

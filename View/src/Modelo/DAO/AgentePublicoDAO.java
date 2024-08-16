@@ -10,5 +10,5 @@ public interface AgentePublicoDAO {
     AgentePublico findById(Integer idPublicAgent);
     List<AgentePublico> findAll();
     AgentePublico containsUser(String user, String password);
-    void disable(Integer idPublicAgent);
+    boolean disable(Integer idPublicAgent);
 }

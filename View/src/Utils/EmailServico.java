@@ -7,20 +7,21 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-public class SendEmail {
-    public static void sender(String receiverEmail, String subject, String text) {
+public class EmailServico {
+    public static void sender(String receiverEmail, String text) {
         String sender = "testesmtp58@gmail.com";
         String senderPassword = "ecue drfn kmup fypu";
-
+        
         Properties properties = new Properties();
         properties.put("mail.smtp.user",sender);
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", 587);
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.auth", "true");
-
+        
+        String assunto = "Consulta Marcada";
         System.out.println("Enviando mensagem...");
-
+        
         try {
             Authenticator auth = new Authenticator() {
                 @Override
@@ -34,7 +35,7 @@ public class SendEmail {
 
             msg.setFrom(new InternetAddress(sender));
             msg.setText(text);
-            msg.setSubject(subject);
+            msg.setSubject(assunto);
             msg.addRecipient(Message.RecipientType.TO,
                     new InternetAddress(receiverEmail));
 

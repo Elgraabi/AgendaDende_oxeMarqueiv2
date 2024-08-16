@@ -359,7 +359,12 @@ public class RegisterClinic extends javax.swing.JFrame {
         });
 
         btnDeletarMedico.setBackground(new java.awt.Color(255, 0, 0));
-        btnDeletarMedico.setText("Excluir");
+        btnDeletarMedico.setText("Desativar");
+        btnDeletarMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarMedicoActionPerformed(evt);
+            }
+        });
 
         btnEditarMedico.setBackground(new java.awt.Color(255, 255, 51));
         btnEditarMedico.setText("Editar");
@@ -569,7 +574,14 @@ public class RegisterClinic extends javax.swing.JFrame {
 
 
     private void btnDeletarClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarClinicaActionPerformed
-        // TODO add your handling code here:
+        ClinicaControle clinicaControle = new ClinicaControle();
+        
+        Object idClinicas = ClinicTable.getValueAt(ClinicTable.getSelectedRow(), 0);
+        this.idClinica = (int) idClinicas;
+        System.out.println("desativar id: " + idClinica);
+        if(clinicaControle.desativarClinica(idClinica)){
+            carregarClinicas();
+        }
     }//GEN-LAST:event_btnDeletarClinicaActionPerformed
 
     private void btnEditarClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarClinicaActionPerformed
@@ -580,6 +592,18 @@ public class RegisterClinic extends javax.swing.JFrame {
         this.dispose();
         telaEditClinic.setVisible(true);
     }//GEN-LAST:event_btnEditarClinicaActionPerformed
+
+    private void btnDeletarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarMedicoActionPerformed
+        // TODO add your handling code here:
+        MedicoControle medicoControle = new MedicoControle();
+        
+        Object idMedicos = TableDoctor.getValueAt(TableDoctor.getSelectedRow(), 0);
+        this.idMedico = (int) idMedicos;
+        System.out.println("desativar id: " + idMedico);
+        if(medicoControle.desativarMedico(idMedico)){
+            carregarMedicos();
+        }
+    }//GEN-LAST:event_btnDeletarMedicoActionPerformed
 
 
     private void carregarClinicas() {

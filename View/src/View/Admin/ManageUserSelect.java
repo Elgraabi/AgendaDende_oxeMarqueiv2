@@ -6,6 +6,7 @@ package View.Admin;
 
 import Controle.PublicAgentController;
 import Controle.QueryController;
+import Controle.SessionController;
 import Modelo.DAO.impl.AgentePublicoDAOJDBC;
 import Modelo.DAO.impl.ClinicaDAOJDBC;
 import Modelo.DAO.impl.PacienteDAOJDBC;
@@ -35,7 +36,7 @@ public class ManageUserSelect extends javax.swing.JFrame {
         addWindowListener( new java.awt.event.WindowAdapter(){
             @Override
             public void windowOpened(java.awt.event.WindowEvent e) {
-            carregar();
+                carregar();
             }  
         });
     }
@@ -182,7 +183,12 @@ public class ManageUserSelect extends javax.swing.JFrame {
         });
 
         btnDelet.setBackground(new java.awt.Color(255, 0, 0));
-        btnDelet.setText("Excluir");
+        btnDelet.setText("Desativar");
+        btnDelet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -357,7 +363,8 @@ public class ManageUserSelect extends javax.swing.JFrame {
     }
     
     private void btn_NovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NovoUsuarioActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:   
+        
         AddUser telaUserSelect = new AddUser();
         this.dispose();
         telaUserSelect.setVisible(true);
@@ -393,7 +400,9 @@ public class ManageUserSelect extends javax.swing.JFrame {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
+        
         Login telaLogin = new Login();
+        SessionController.setIdPublicAgent(0);
         this.dispose();
         telaLogin.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
@@ -438,6 +447,18 @@ public class ManageUserSelect extends javax.swing.JFrame {
         }
         TableUser.setModel(modeloTabela);
     }//GEN-LAST:event_botaoBuscarActionPerformed
+
+    private void btnDeletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletActionPerformed
+        // TODO add your handling code here:
+        Object idUser = TableUser.getValueAt(TableUser.getSelectedRow(), 1);
+        this.idAgentePublico = (int) idUser;
+        
+        PublicAgentController publicAgentController = new PublicAgentController();
+        System.out.println("desativar id: " + idAgentePublico);
+        if (publicAgentController.desativarAgente(idAgentePublico)) {
+            carregar();
+        }
+    }//GEN-LAST:event_btnDeletActionPerformed
     private void carregar() {
         
         DefaultTableModel modeloTabela = new DefaultTableModel();    
@@ -451,9 +472,11 @@ public class ManageUserSelect extends javax.swing.JFrame {
         List<AgentePublico> listaUsuarios = usuarios.buscarUsuarios();
        
         for (AgentePublico listaUsuario : listaUsuarios) {
-            modeloTabela.addRow(
-                new Object[]{listaUsuario.getName(), listaUsuario.getIdPublicAgent()}
-            );
+            if (listaUsuario.getStatus().equalsIgnoreCase("Ativo")) {
+                modeloTabela.addRow(
+                    new Object[]{listaUsuario.getName(), listaUsuario.getIdPublicAgent()}
+                );
+            }
         }
         TableUser.setModel(modeloTabela);
     }

@@ -70,7 +70,7 @@ public class ClinicaControle {
                 return listClinica;
             }
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
         }
 
         return retorno;
@@ -82,8 +82,18 @@ public class ClinicaControle {
             ClinicaDAOJDBC clinicaDAOJDBC = new ClinicaDAOJDBC();
             clinicaDAOJDBC.update(nameOfClinic, address, phoneNumber, email, additionalInformation, idClinic);
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
         }
 
+    }
+    
+    public boolean desativarClinica(int idClinica){
+        try {
+            ClinicaDAOJDBC clinicaDAOJDBC = new ClinicaDAOJDBC();
+            return clinicaDAOJDBC.disable(idClinica);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
     }
 }

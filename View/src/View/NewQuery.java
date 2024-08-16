@@ -23,6 +23,7 @@ import Modelo.Entidades.Consulta;
 import Modelo.Entidades.Medico;
 import Modelo.Entidades.Paciente;
 import Modelo.Entidades.Solicitacao;
+import Utils.EmailServico;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
@@ -32,7 +33,9 @@ import javax.swing.DefaultListModel;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -469,7 +472,24 @@ public class NewQuery extends javax.swing.JFrame {
                     boolean marcou = consultaControle.marcarConsulta(novaConsulta);
                     if (marcou) {
                         JOptionPane.showMessageDialog(null, "Consulta Marcada com Sucesso");
-                        PatientSelect patientSelect = new PatientSelect();
+                        
+                        LocalDate diaConsulta = novaConsulta.getDateAndTimeConsultation().toLocalDate();
+                        LocalTime horarioConsulta = novaConsulta.getDateAndTimeConsultation().toLocalTime();
+                        
+                        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", new Locale("pt", "BR"));
+                        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss", new Locale("pt", "BR"));
+                        
+                        String diaConsultaBr = diaConsulta.format(dateFormatter);
+                        String horarioConsultaBR = horarioConsulta.format(timeFormatter);
+                        
+                        String texto = "Caro paciente, " + paciente.getName() + "! Sua consulta foi "
+                                + "marcada para o dia " + diaConsultaBr + "às " + horarioConsultaBR
+                                + "na Clínica " + clinicaMedico.getNameOfClinic() + " que fica no endereço " +
+                                clinicaMedico.getAddress() + "\n" + "O médico que irá atende-lo é o doutor(a) " 
+                                + medico.getName(); 
+                        
+                        EmailServico.sender(paciente.getEmail(), texto);
+                        View.Admin.PatientSelect patientSelect = new View.Admin.PatientSelect();
                         this.dispose();
                         patientSelect.setVisible(true);
                     } else {
