@@ -48,19 +48,20 @@ public class AgentePublicoDAOJDBC implements AgentePublicoDAO {
         }
     }
  
-    public void updateAgente(Integer idPublicAgent, String email, String user, String password) {
+    public void updateAgente(Integer idPublicAgent, String email, String user, String password, String typeUser) {
         PreparedStatement pstm =  null;
 
         try {
             conn = FabricaDeConexao.getConnection();
             pstm = conn.prepareStatement(
-                    "UPDATE PUBLIC_AGENT SET idpublicagent = ?, email = ?, userr = ?, password =? WHERE idpublicagent = ?"
+                    "UPDATE PUBLIC_AGENT SET idpublicagent = ?, email = ?, userr = ?, password =?, typeuser = ? WHERE idpublicagent = ?"
             );
             pstm.setInt(1, idPublicAgent);
             pstm.setString(2, email);
             pstm.setString(3, user);
             pstm.setString(4, password);
-            pstm.setInt(5,idPublicAgent);
+            pstm.setString(5,typeUser);
+            pstm.setInt(6, idPublicAgent);
             pstm.executeUpdate();
         } catch (SQLException e){
             e.printStackTrace();

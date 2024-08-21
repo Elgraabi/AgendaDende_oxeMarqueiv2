@@ -80,13 +80,13 @@ public class PacienteControle {
                     if (nomePaciente.toLowerCase().equalsIgnoreCase(paciente.getName().toLowerCase())) {
                         retorno.add(paciente);
                     }
-
                     String[] nomeQuebrado = paciente.getName().split(" ");
                     for (String string : nomeQuebrado) {
                         if (nomePaciente.toLowerCase().equalsIgnoreCase(string.toLowerCase())) {
                             retorno.add(paciente);
                         }
                     }
+
                 }
             } else {
                 return listPaciente;

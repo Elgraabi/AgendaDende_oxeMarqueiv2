@@ -411,6 +411,7 @@ public class PatientSelect extends javax.swing.JFrame {
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
         String sigTapPatient = (String) TablePatient.getValueAt(TablePatient.getSelectedRow(), 2);
+        System.out.println(sigTapPatient);
         EditPatient inicialEditPatient = new EditPatient();
         this.dispose();
         inicialEditPatient.setVisible(true);
@@ -446,9 +447,10 @@ public class PatientSelect extends javax.swing.JFrame {
         for (Paciente listaPaciente : listaPacientes) {
             modeloLista.addRow(new Object[]{listaPaciente.getIdPatient(), listaPaciente.getName(), listaPaciente.getSIGTAP()}
             );
+            
         }
-        TablePatient.setModel(modeloLista);
         
+        TablePatient.setModel(modeloLista);
     }//GEN-LAST:event_botaoBuscarActionPerformed
     
     private void carregar() {
