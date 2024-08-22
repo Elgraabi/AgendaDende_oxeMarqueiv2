@@ -4,7 +4,20 @@
  */
 package View;
 
+import Controle.ClinicaControle;
+import Controle.MedicoControle;
+import Controle.PacienteControle;
+import Controle.QueryController;
+import Modelo.DAO.impl.ClinicaDAOJDBC;
+import Modelo.DAO.impl.PacienteDAOJDBC;
+import Modelo.DAO.impl.SolicitacaoDAOJDBC;
+import Modelo.Entidades.Clinica;
+import Modelo.Entidades.Consulta;
+import Modelo.Entidades.Medico;
+import Modelo.Entidades.Paciente;
+import Modelo.Entidades.Solicitacao;
 import View.Admin.*;
+import java.util.List;
 
 /**
  *
@@ -17,6 +30,12 @@ public class PopUpInfo extends javax.swing.JFrame {
      */
     public PopUpInfo() {
         initComponents();
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowOpened(java.awt.event.WindowEvent e) {
+                carregar();
+            }
+        });
     }
 
     /**
@@ -36,7 +55,7 @@ public class PopUpInfo extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         data = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        clinica = new javax.swing.JLabel();
+        clinicaaaaa = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         requerenteNome = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
@@ -63,7 +82,7 @@ public class PopUpInfo extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Data:");
 
-        clinica.setText("clinica");
+        clinicaaaaa.setText("clinica");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Requerente:");
@@ -88,30 +107,31 @@ public class PopUpInfo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pacientNome, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(requerenteNome))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(medicoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(clinica, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(requerenteNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnCancelar)
                         .addGap(72, 72, 72)
-                        .addComponent(revEmail)))
-                .addContainerGap(138, Short.MAX_VALUE))
+                        .addComponent(revEmail)
+                        .addGap(0, 132, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pacientNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(medicoNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(clinicaaaaa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(data, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +151,7 @@ public class PopUpInfo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(clinica))
+                    .addComponent(clinicaaaaa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -197,9 +217,32 @@ public class PopUpInfo extends javax.swing.JFrame {
         });
     }
 
+    public void carregar() {
+        QueriesSelect queriesSelect = new QueriesSelect();
+        int idQuery = queriesSelect.getIdConsulta();
+        
+        QueryController queryController = new QueryController();
+        Consulta consulta = queryController.findById(idQuery);
+        SolicitacaoDAOJDBC solicitacaoDAOJDBC = new SolicitacaoDAOJDBC();
+        Solicitacao solicitacao = solicitacaoDAOJDBC.findById(consulta.getSolicitation().getIdSolicitation());
+        MedicoControle medicoController = new  MedicoControle();
+        Medico medico = medicoController.buscarMedico(consulta.getDoctor().getIdDoctor());
+        ClinicaControle clinicaControler = new ClinicaControle();
+        Clinica clinica = clinicaControler.buscarClinica(consulta.getClinic().getIdClinic());
+        PacienteControle pacienteControle = new PacienteControle();
+        Paciente paciente = pacienteControle.buscarPaciente(solicitacao.getPatient().getIdPatient());
+        
+        
+        pacientNome.setText(paciente.getName());
+        requerenteNome.setText(solicitacao.getNameOfRequestDoctor());
+        medicoNome.setText(medico.getName());
+        clinicaaaaa.setText(clinica.getNameOfClinic());
+        data.setText(consulta.getDateAndTimeConsultation().toString());
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JLabel clinica;
+    private javax.swing.JLabel clinicaaaaa;
     private javax.swing.JLabel data;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

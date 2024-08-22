@@ -307,6 +307,8 @@
                               <Component id="jScrollPane4" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="btnDeletarClinica" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="ativarClinica" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnEditarClinica" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -333,6 +335,7 @@
                               <Component id="btnAddClinic" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnEditarClinica" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnDeletarClinica" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ativarClinica" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -459,6 +462,17 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JButton" name="ativarClinica">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="cc" red="33" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Ativar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ativarClinicaActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Component class="java.awt.Label" name="label1">
@@ -493,6 +507,8 @@
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="btnDeletarMedico" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="ativarMedico" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnEditarMedico" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -527,6 +543,7 @@
                               <Component id="btnAddDoctor" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnDeletarMedico" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnEditarMedico" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ativarMedico" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -637,6 +654,20 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Buscar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoBuscarMedActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="ativarMedico">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="cc" red="33" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Ativar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ativarMedicoActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

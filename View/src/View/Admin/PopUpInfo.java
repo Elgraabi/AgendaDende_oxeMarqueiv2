@@ -4,6 +4,17 @@
  */
 package View.Admin;
 
+import Controle.ClinicaControle;
+import Controle.MedicoControle;
+import Controle.PacienteControle;
+import Controle.QueryController;
+import Modelo.DAO.impl.SolicitacaoDAOJDBC;
+import Modelo.Entidades.Clinica;
+import Modelo.Entidades.Consulta;
+import Modelo.Entidades.Medico;
+import Modelo.Entidades.Paciente;
+import Modelo.Entidades.Solicitacao;
+
 /**
  *
  * @author Toia
@@ -15,6 +26,12 @@ public class PopUpInfo extends javax.swing.JFrame {
      */
     public PopUpInfo() {
         initComponents();
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowOpened(java.awt.event.WindowEvent e) {
+                carregar();
+            }
+        });
     }
 
     /**
@@ -34,7 +51,7 @@ public class PopUpInfo extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         data = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        clinica = new javax.swing.JLabel();
+        clinicaaaaa = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         requerenteNome = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
@@ -61,7 +78,7 @@ public class PopUpInfo extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Data:");
 
-        clinica.setText("clinica");
+        clinicaaaaa.setText("clinica");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Requerente:");
@@ -100,7 +117,7 @@ public class PopUpInfo extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(clinica, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(clinicaaaaa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -129,7 +146,7 @@ public class PopUpInfo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(clinica))
+                    .addComponent(clinicaaaaa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -193,10 +210,33 @@ public class PopUpInfo extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void carregar() {
+        QueriesSelect queriesSelect = new QueriesSelect();
+        int idQuery = queriesSelect.getIdConsulta();
+        
+        QueryController queryController = new QueryController();
+        Consulta consulta = queryController.findById(idQuery);
+        SolicitacaoDAOJDBC solicitacaoDAOJDBC = new SolicitacaoDAOJDBC();
+        Solicitacao solicitacao = solicitacaoDAOJDBC.findById(consulta.getSolicitation().getIdSolicitation());
+        MedicoControle medicoController = new  MedicoControle();
+        Medico medico = medicoController.buscarMedico(consulta.getDoctor().getIdDoctor());
+        ClinicaControle clinicaControler = new ClinicaControle();
+        Clinica clinica = clinicaControler.buscarClinica(consulta.getClinic().getIdClinic());
+        PacienteControle pacienteControle = new PacienteControle();
+        Paciente paciente = pacienteControle.buscarPaciente(solicitacao.getPatient().getIdPatient());
+        
+        
+        pacientNome.setText(paciente.getName());
+        requerenteNome.setText(solicitacao.getNameOfRequestDoctor());
+        medicoNome.setText(medico.getName());
+        clinicaaaaa.setText(clinica.getNameOfClinic());
+        data.setText(consulta.getDateAndTimeConsultation().toString());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JLabel clinica;
+    private javax.swing.JLabel clinicaaaaa;
     private javax.swing.JLabel data;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

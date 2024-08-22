@@ -23,12 +23,13 @@ import Modelo.DAO.SolicitacaoDAO;
  * @author Vitor
  */
 public class QueriesSelect extends javax.swing.JFrame {
-
+    private static int idConsulta = 0;
     /**
      * Creates new form Login
      */
     public QueriesSelect() {
         initComponents();
+        int idConsulta = this.idConsulta;
         addWindowListener( new java.awt.event.WindowAdapter(){
             @Override
                 public void windowOpened(java.awt.event.WindowEvent e) {
@@ -328,7 +329,11 @@ public class QueriesSelect extends javax.swing.JFrame {
         this.dispose();
         telaPatientSelect.setVisible(true);
     }//GEN-LAST:event_btnPacienteActionPerformed
-
+    
+    public int getIdConsulta() {
+        return this.idConsulta;
+    }
+    
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
         // TODO add your handling code here:
         ReportSelect telaReportSelect = new ReportSelect();
@@ -396,9 +401,13 @@ public class QueriesSelect extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnInfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfActionPerformed
-        PopUpInfo popUpInfo = new PopUpInfo();
+        Object idConsulta = TableQuery.getValueAt(TableQuery.getSelectedRow(), 0);
+        this.idConsulta = (int) idConsulta;
+        System.out.println(idConsulta);
+        View.PopUpInfo popUpInfo = new View.PopUpInfo();
         popUpInfo.setVisible(true);
     }//GEN-LAST:event_btnInfActionPerformed
+   
     private void carregar() {
         
         DefaultTableModel modeloLista = new DefaultTableModel();    

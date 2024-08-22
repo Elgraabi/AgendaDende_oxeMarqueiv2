@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Vitor
  */
 public class RegisterClinic extends javax.swing.JFrame {
-    
+
     private static int idMedico;
     private static int idClinica;
 
@@ -69,6 +69,7 @@ public class RegisterClinic extends javax.swing.JFrame {
         btnDeletarClinica = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         ClinicTable = new javax.swing.JTable();
+        ativarClinica = new javax.swing.JButton();
         label1 = new java.awt.Label();
         jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -79,6 +80,7 @@ public class RegisterClinic extends javax.swing.JFrame {
         btnEditarMedico = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         botaoBuscarMed = new javax.swing.JButton();
+        ativarMedico = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -277,6 +279,14 @@ public class RegisterClinic extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(ClinicTable);
 
+        ativarClinica.setBackground(new java.awt.Color(51, 204, 0));
+        ativarClinica.setText("Ativar");
+        ativarClinica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ativarClinicaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -293,6 +303,8 @@ public class RegisterClinic extends javax.swing.JFrame {
                     .addComponent(jScrollPane4)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(btnDeletarClinica)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ativarClinica)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnEditarClinica)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -313,7 +325,8 @@ public class RegisterClinic extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddClinic)
                     .addComponent(btnEditarClinica)
-                    .addComponent(btnDeletarClinica))
+                    .addComponent(btnDeletarClinica)
+                    .addComponent(ativarClinica))
                 .addContainerGap())
         );
 
@@ -380,6 +393,19 @@ public class RegisterClinic extends javax.swing.JFrame {
 
         botaoBuscarMed.setBackground(new java.awt.Color(0, 204, 0));
         botaoBuscarMed.setText("Buscar");
+        botaoBuscarMed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoBuscarMedActionPerformed(evt);
+            }
+        });
+
+        ativarMedico.setBackground(new java.awt.Color(51, 204, 0));
+        ativarMedico.setText("Ativar");
+        ativarMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ativarMedicoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -393,6 +419,8 @@ public class RegisterClinic extends javax.swing.JFrame {
                         .addGap(1, 1, 1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addComponent(btnDeletarMedico)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ativarMedico)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnEditarMedico)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -420,7 +448,8 @@ public class RegisterClinic extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddDoctor)
                     .addComponent(btnDeletarMedico)
-                    .addComponent(btnEditarMedico))
+                    .addComponent(btnEditarMedico)
+                    .addComponent(ativarMedico))
                 .addContainerGap())
         );
 
@@ -483,23 +512,24 @@ public class RegisterClinic extends javax.swing.JFrame {
         return this.idMedico;
     }
 
-    private void BuscarClinicasActionPerformed(java.awt.event.ActionEvent evt) {                                               
+    private void BuscarClinicasActionPerformed(java.awt.event.ActionEvent evt) {
 
     }
+
     public int getIdClinica() {
         return this.idClinica;
     }
-        
-    private void SearchTxtActionPerformed(java.awt.event.ActionEvent evt) {                                          
+
+    private void SearchTxtActionPerformed(java.awt.event.ActionEvent evt) {
 
         // TODO add your handling code here:
-    }                                              
+    }
 
     private void botaoBucarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBucarActionPerformed
         String busca = BuscarClinicas.getText();
-        
-        DefaultTableModel modeloLista = new DefaultTableModel();
 
+        DefaultTableModel modeloLista = new DefaultTableModel();
+        modeloLista.addColumn("ID");
         modeloLista.addColumn("Nome");
         modeloLista.addColumn("Telefone");
         modeloLista.addColumn("Endereço");
@@ -509,12 +539,13 @@ public class RegisterClinic extends javax.swing.JFrame {
         List<Clinica> listaClinicas = clinicas.bucarClinicas(busca);
 
         for (Clinica listaClinica : listaClinicas) {
-            modeloLista.addRow(new Object[]{listaClinica.getNameOfClinic(), listaClinica.getPhoneNumber(),
+            modeloLista.addRow(new Object[]{listaClinica.getIdClinic(), listaClinica.getNameOfClinic(), listaClinica.getPhoneNumber(),
                 listaClinica.getAddress(), listaClinica.getStatus()}
             );
         }
         ClinicTable.setModel(modeloLista);
         
+
     }//GEN-LAST:event_botaoBucarActionPerformed
 
     private void ClinicTableComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_ClinicTableComponentAdded
@@ -579,7 +610,7 @@ public class RegisterClinic extends javax.swing.JFrame {
 
     private void btnEditarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarMedicoActionPerformed
         // TODO add your handling code here:
-        Object idMedicos = TableDoctor.getValueAt(TableDoctor.getSelectedRow(),0);
+        Object idMedicos = TableDoctor.getValueAt(TableDoctor.getSelectedRow(), 0);
         this.idMedico = (int) idMedicos;
         EditDoctor telaEditDoctor = new EditDoctor();
         this.dispose();
@@ -589,18 +620,18 @@ public class RegisterClinic extends javax.swing.JFrame {
 
     private void btnDeletarClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarClinicaActionPerformed
         ClinicaControle clinicaControle = new ClinicaControle();
-        
+
         Object idClinicas = ClinicTable.getValueAt(ClinicTable.getSelectedRow(), 0);
         this.idClinica = (int) idClinicas;
         System.out.println("desativar id: " + idClinica);
-        if(clinicaControle.desativarClinica(idClinica)){
+        if (clinicaControle.desativarClinica(idClinica)) {
             carregarClinicas();
         }
     }//GEN-LAST:event_btnDeletarClinicaActionPerformed
 
     private void btnEditarClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarClinicaActionPerformed
         // TODO add your handling code here:
-        Object idClinicas = ClinicTable.getValueAt(ClinicTable.getSelectedRow(),0);
+        Object idClinicas = ClinicTable.getValueAt(ClinicTable.getSelectedRow(), 0);
         this.idClinica = (int) idClinicas;
         EditClinic telaEditClinic = new EditClinic();
         this.dispose();
@@ -610,11 +641,11 @@ public class RegisterClinic extends javax.swing.JFrame {
     private void btnDeletarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarMedicoActionPerformed
         // TODO add your handling code here:
         MedicoControle medicoControle = new MedicoControle();
-        
+
         Object idMedicos = TableDoctor.getValueAt(TableDoctor.getSelectedRow(), 0);
         this.idMedico = (int) idMedicos;
         System.out.println("desativar id: " + idMedico);
-        if(medicoControle.desativarMedico(idMedico)){
+        if (medicoControle.desativarMedico(idMedico)) {
             carregarMedicos();
         }
     }//GEN-LAST:event_btnDeletarMedicoActionPerformed
@@ -623,11 +654,60 @@ public class RegisterClinic extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void botaoBuscarMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscarMedActionPerformed
+        // TODO add your handling code here:
+        String busca = jTextField1.getText();
+        DefaultTableModel modeloLista = new DefaultTableModel();
+        modeloLista.addColumn("ID");
+        modeloLista.addColumn("Nome");
+        modeloLista.addColumn("Clinica");
+        modeloLista.addColumn("Especialidade");
+        modeloLista.addColumn("Status");
+
+        MedicoControle doutores = new MedicoControle();
+        List<Medico> listaDoutores = doutores.bucarMedicoss(busca);
+
+        ClinicaControle clinicas = new ClinicaControle();
+        List<Clinica> listaClinicas = clinicas.buscarClinicas();
+
+        for (Medico listaDoutor : listaDoutores) {
+            for (Clinica clinic : listaClinicas) {
+                if (clinic.getIdClinic() == listaDoutor.getClinic().getIdClinic()) {
+                    modeloLista.addRow(new Object[]{listaDoutor.getIdDoctor(), listaDoutor.getName(), clinic.getNameOfClinic(), listaDoutor.getSpeciality(), listaDoutor.getStatus()});
+                }
+            }
+        }
+        TableDoctor.setModel(modeloLista);
+    }//GEN-LAST:event_botaoBuscarMedActionPerformed
+
+    private void ativarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ativarMedicoActionPerformed
+        // TODO add your handling code here:
+        MedicoControle medicoControle = new MedicoControle();
+
+        Object idMedico = TableDoctor.getValueAt(TableDoctor.getSelectedRow(), 0);
+        this.idMedico = (int) idMedico;
+        System.out.println("ativar medico id: " + idMedico);
+        if (medicoControle.ativarMedico((int) idMedico)) {
+            carregarMedicos();
+        }
+    }//GEN-LAST:event_ativarMedicoActionPerformed
+
+    private void ativarClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ativarClinicaActionPerformed
+        // TODO add your handling code here:
+        ClinicaControle clinicaControle = new ClinicaControle();
+
+        Object idClinicas = ClinicTable.getValueAt(ClinicTable.getSelectedRow(), 0);
+        this.idClinica = (int) idClinicas;
+        System.out.println("ativar clinica id: " + idClinica);
+        if (clinicaControle.ativarClinica(idClinica)) {
+            carregarClinicas();
+        }
+    }//GEN-LAST:event_ativarClinicaActionPerformed
 
     private void carregarClinicas() {
 
         DefaultTableModel modeloLista = new DefaultTableModel();
-        
+
         modeloLista.addColumn("ID");
         modeloLista.addColumn("Nome");
         modeloLista.addColumn("Telefone");
@@ -643,7 +723,7 @@ public class RegisterClinic extends javax.swing.JFrame {
             );
         }
         ClinicTable.setModel(modeloLista);
-        
+
     }
 
     public void carregarMedicos() {
@@ -652,27 +732,23 @@ public class RegisterClinic extends javax.swing.JFrame {
         modeloLista.addColumn("Nome");
         modeloLista.addColumn("Clinica");
         modeloLista.addColumn("Especialidade");
+        modeloLista.addColumn("Status");
 
         MedicoControle doutores = new MedicoControle();
         List<Medico> listaDoutores = doutores.buscarMedicos();
-        
+
         ClinicaControle clinicas = new ClinicaControle();
         List<Clinica> listaClinicas = clinicas.buscarClinicas();
-        
+
         for (Medico listaDoutor : listaDoutores) {
-            if (listaDoutor.getStatus().equalsIgnoreCase("Ativo")) {
-                for (Clinica clinic : listaClinicas) {
-                    if (clinic.getIdClinic() == listaDoutor.getClinic().getIdClinic()) {
-                        modeloLista.addRow(new Object[]{listaDoutor.getIdDoctor(), listaDoutor.getName(), clinic.getNameOfClinic(), listaDoutor.getSpeciality()});
-                    }
+            for (Clinica clinic : listaClinicas) {
+                if (clinic.getIdClinic() == listaDoutor.getClinic().getIdClinic()) {
+                    modeloLista.addRow(new Object[]{listaDoutor.getIdDoctor(), listaDoutor.getName(), clinic.getNameOfClinic(), listaDoutor.getSpeciality(), listaDoutor.getStatus()});
                 }
             }
-
         }
         TableDoctor.setModel(modeloLista);
     }
-    
-   
 
     /**
      * @param args the command line arguments
@@ -968,6 +1044,8 @@ public class RegisterClinic extends javax.swing.JFrame {
     private javax.swing.JTextField BuscarClinicas;
     private javax.swing.JTable ClinicTable;
     private javax.swing.JTable TableDoctor;
+    private javax.swing.JButton ativarClinica;
+    private javax.swing.JButton ativarMedico;
     private javax.swing.JButton botaoBucar;
     private javax.swing.JButton botaoBuscarMed;
     private javax.swing.JButton btnAddClinic;

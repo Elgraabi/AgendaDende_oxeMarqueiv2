@@ -92,5 +92,15 @@ public class PublicAgentController {
         }
         return false;
     }
+    
+    public boolean ativarAgente(int idAgente){
+        try {
+            AgentePublicoDAOJDBC agentePublicoDAOJDBC = new AgentePublicoDAOJDBC();
+            return agentePublicoDAOJDBC.enable(idAgente);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
 
 }

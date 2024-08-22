@@ -26,18 +26,19 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ManageUserSelect extends javax.swing.JFrame {
 
-    private static int idAgentePublico = 0; 
+    private static int idAgentePublico = 0;
+
     /**
      * Creates new form Login
      */
     public ManageUserSelect() {
         initComponents();
         int idAgentePublico1 = this.idAgentePublico;
-        addWindowListener( new java.awt.event.WindowAdapter(){
+        addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowOpened(java.awt.event.WindowEvent e) {
                 carregar();
-            }  
+            }
         });
     }
 
@@ -193,6 +194,11 @@ public class ManageUserSelect extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(51, 204, 0));
         jButton1.setText("Ativar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -368,10 +374,10 @@ public class ManageUserSelect extends javax.swing.JFrame {
     public int getIdAgentePublico() {
         return this.idAgentePublico;
     }
-    
+
     private void btn_NovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NovoUsuarioActionPerformed
         // TODO add your handling code here:   
-        
+
         AddUser telaUserSelect = new AddUser();
         this.dispose();
         telaUserSelect.setVisible(true);
@@ -407,7 +413,7 @@ public class ManageUserSelect extends javax.swing.JFrame {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-        
+
         Login telaLogin = new Login();
         SessionController.setIdPublicAgent(0);
         this.dispose();
@@ -431,25 +437,26 @@ public class ManageUserSelect extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void TableUserAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_TableUserAncestorAdded
-                
+
     }//GEN-LAST:event_TableUserAncestorAdded
 
     private void botaoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscarActionPerformed
         String buscar = buscarUser.getText();
-        
-        DefaultTableModel modeloTabela = new DefaultTableModel();    
-        
-        modeloTabela.addColumn("Nome");        
-        modeloTabela.addColumn("Codigo");
 
-        
+        DefaultTableModel modeloTabela = new DefaultTableModel();
+
+        modeloTabela.addColumn("Nome");
+        modeloTabela.addColumn("Codigo");
+        modeloTabela.addColumn("Status");
+        modeloTabela.addColumn("Tipo");
+
         PublicAgentController usuarios = new PublicAgentController();
         @SuppressWarnings("unchecked")
         List<AgentePublico> listaUsuarios = usuarios.buscarAgente(buscar);
-       
+
         for (AgentePublico listaUsuario : listaUsuarios) {
             modeloTabela.addRow(
-                new Object[]{listaUsuario.getName(), listaUsuario.getIdPublicAgent()}
+                    new Object[]{listaUsuario.getName(), listaUsuario.getIdPublicAgent(), listaUsuario.getStatus(), listaUsuario.getTypeUser()}
             );
         }
         TableUser.setModel(modeloTabela);
@@ -459,36 +466,52 @@ public class ManageUserSelect extends javax.swing.JFrame {
         // TODO add your handling code here:
         Object idUser = TableUser.getValueAt(TableUser.getSelectedRow(), 1);
         this.idAgentePublico = (int) idUser;
-        
+
         PublicAgentController publicAgentController = new PublicAgentController();
         System.out.println("desativar id: " + idAgentePublico);
         if (publicAgentController.desativarAgente(idAgentePublico)) {
             carregar();
         }
     }//GEN-LAST:event_btnDeletActionPerformed
-    private void carregar() {
-        
-        DefaultTableModel modeloTabela = new DefaultTableModel();    
-        
-        modeloTabela.addColumn("Nome");        
-        modeloTabela.addColumn("Codigo");
 
-        
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Object idUser = TableUser.getValueAt(TableUser.getSelectedRow(), 1);
+        this.idAgentePublico = (int) idUser;
+
+        PublicAgentController publicAgentController = new PublicAgentController();
+        System.out.println("ativar id: " + idAgentePublico);
+        if (publicAgentController.ativarAgente(idAgentePublico)) {
+            carregar();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+    private void carregar() {
+
+        DefaultTableModel modeloTabela = new DefaultTableModel();
+
+        modeloTabela.addColumn("Nome");
+        modeloTabela.addColumn("Codigo");
+        modeloTabela.addColumn("Status");
+        modeloTabela.addColumn("Tipo");
+
         PublicAgentController usuarios = new PublicAgentController();
         @SuppressWarnings("unchecked")
         List<AgentePublico> listaUsuarios = usuarios.buscarUsuarios();
-       
+
         for (AgentePublico listaUsuario : listaUsuarios) {
-            if (listaUsuario.getStatus().equalsIgnoreCase("Ativo")) {
-                modeloTabela.addRow(
-                    new Object[]{listaUsuario.getName(), listaUsuario.getIdPublicAgent()}
-                );
-            }
+
+            modeloTabela.addRow(
+                    new Object[]{listaUsuario.getName(), listaUsuario.getIdPublicAgent(), listaUsuario.getStatus(), listaUsuario.getTypeUser()}
+            );
+
         }
         TableUser.setModel(modeloTabela);
     }
+
     /**
-    /**
+     * /
+     *
+     **
      * @param args the command line arguments
      */
     public static void main(String args[]) {

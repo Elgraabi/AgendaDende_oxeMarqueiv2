@@ -214,6 +214,28 @@ public class AgentePublicoDAOJDBC implements AgentePublicoDAO {
         }
         return false;
     }
+    
+    public boolean enable(Integer idPublicAgent) {
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+
+        try {
+            conn = FabricaDeConexao.getConnection();
+            pstm = conn.prepareStatement(
+                    "UPDATE PUBLIC_AGENT SET status = ? WHERE idPublicAgent = ?"
+            );
+            pstm.setString(1, "ativo");
+            pstm.setInt(2, idPublicAgent);
+            pstm.executeUpdate();
+            return true;
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            FabricaDeConexao.closeStatement(pstm);
+            FabricaDeConexao.closeConnection(conn);
+        }
+        return false;
+    }
 
     @Override
     public void update(String phoneNumber1, String address, String email, Integer idPublicAgent) {

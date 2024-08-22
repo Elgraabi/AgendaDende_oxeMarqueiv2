@@ -300,4 +300,27 @@ public class MedicoDAOJDBC implements MedicoDAO {
         }
         return false;
     }
+    
+    public boolean enable(Integer idMedico) {
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+
+        try {
+            conn = FabricaDeConexao.getConnection();
+            pstm = conn.prepareStatement(
+                    "UPDATE DOCTOR SET status = ? WHERE idDoctor = ?"
+            );
+            pstm.setString(1, "ativo");
+            pstm.setInt(2, idMedico);
+            pstm.executeUpdate();
+            return true;
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            FabricaDeConexao.closeStatement(pstm);
+            FabricaDeConexao.closeConnection(conn);
+        }
+        return false;
+    }
+ 
 }

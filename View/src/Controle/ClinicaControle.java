@@ -96,4 +96,14 @@ public class ClinicaControle {
         }
         return false;
     }
+    
+    public boolean ativarClinica(int idClinica){
+        try {
+            ClinicaDAOJDBC clinicaDAOJDBC = new ClinicaDAOJDBC();
+            return clinicaDAOJDBC.enable(idClinica);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
 }

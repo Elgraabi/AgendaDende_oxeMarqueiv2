@@ -8,6 +8,7 @@ import Modelo.DAO.impl.ClinicaDAOJDBC;
 import Modelo.DAO.impl.MedicoDAOJDBC;
 import Modelo.Entidades.Clinica;
 import Modelo.Entidades.Medico;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -76,4 +77,44 @@ public class MedicoControle {
         }
         return false;
     }
+    
+     public boolean ativarMedico(int idMedico){
+        try {
+            MedicoDAOJDBC medicoDAOJDBC = new MedicoDAOJDBC();
+            return medicoDAOJDBC.enable(idMedico);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+    
+    public List<Medico> bucarMedicoss(String nomeMedico) {
+        List<Medico> retorno = new ArrayList<>();
+        try {
+            MedicoDAOJDBC MedicoDAO = new MedicoDAOJDBC();
+            List<Medico> listMedico = MedicoDAO.findAll();
+
+            if (!nomeMedico.equals("")) {
+                for (Medico medico : listMedico) {
+                    if (nomeMedico.toLowerCase().equalsIgnoreCase(medico.getName())) {
+                        retorno.add(medico);
+                    }
+
+                    String[] nomeQuebrado = medico.getName().split(" ");
+                    for (String string : nomeQuebrado) {
+                        if (nomeMedico.toLowerCase().equalsIgnoreCase(string.toLowerCase())) {
+                            retorno.add(medico);
+                        }
+                    }
+                }
+            } else {
+                return listMedico;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return retorno;
+    } 
+    
 }

@@ -72,4 +72,14 @@ public class QueryController {
         }
         return retorno;
     }
-}
+    
+    public Consulta findById(Integer id) {
+        try {
+            ConsultaDAOJDBC consultaDAOJDBC = new ConsultaDAOJDBC();
+            return consultaDAOJDBC.findById(id);
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+        return null;
+    }
+ }

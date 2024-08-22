@@ -491,7 +491,7 @@ public class NewQuery extends javax.swing.JFrame {
                                 + medico.getName(); 
                         
                         EmailServico.sender(paciente.getEmail(), texto);
-                        View.Admin.PatientSelect patientSelect = new View.Admin.PatientSelect();
+                        View.PatientSelect patientSelect = new View.PatientSelect();
                         this.dispose();
                         patientSelect.setVisible(true);
                     } else {

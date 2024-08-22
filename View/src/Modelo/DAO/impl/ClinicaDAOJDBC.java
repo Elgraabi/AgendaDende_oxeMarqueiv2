@@ -223,4 +223,26 @@ public class ClinicaDAOJDBC implements ClinicaDAO {
         }
         return false;
     }
+    
+    public boolean enable(Integer idClinica) {
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+
+        try {
+            conn = FabricaDeConexao.getConnection();
+            pstm = conn.prepareStatement(
+                    "UPDATE CLINIC SET status = ? WHERE idClinic = ?"
+            );
+            pstm.setString(1, "ativo");
+            pstm.setInt(2, idClinica);
+            pstm.executeUpdate();
+            return true;
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            FabricaDeConexao.closeStatement(pstm);
+            FabricaDeConexao.closeConnection(conn);
+        }
+        return false;
+    }
 }
