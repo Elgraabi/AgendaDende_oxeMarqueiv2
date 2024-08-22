@@ -404,11 +404,13 @@ public class NewQuery extends javax.swing.JFrame {
                 System.out.println(this.idMedico);
             }
         }
+        JOptionPane.showMessageDialog(null, "Médico selecionado!");
     }//GEN-LAST:event_btnSelecionarMedicoActionPerformed
 
     private void btnSelecionarHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarHoraActionPerformed
         horaDaConsulta = ListaHoras.getSelectedValue();
         System.out.println(horaDaConsulta);
+        JOptionPane.showMessageDialog(null, "Horário selecionado!");
     }//GEN-LAST:event_btnSelecionarHoraActionPerformed
 
     private void ListaHorasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListaHorasValueChanged

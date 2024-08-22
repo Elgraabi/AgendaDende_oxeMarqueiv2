@@ -73,11 +73,11 @@ public class PublicAgentController {
         return retorno;
     }
 
-    public void atualizarAgente(Integer idPublicAgent, String email, String user, String password) {
+    public void atualizarAgente(Integer idPublicAgent, String email, String user, String password, String typeUser) {
 
         try {
             AgentePublicoDAOJDBC agentePublicoDAOJDBC = new AgentePublicoDAOJDBC();
-            agentePublicoDAOJDBC.updateAgente(idPublicAgent, email, user, password);
+            agentePublicoDAOJDBC.updateAgente(idPublicAgent, email, user, password, typeUser);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

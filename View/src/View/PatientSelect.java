@@ -387,6 +387,10 @@ public class PatientSelect extends javax.swing.JFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
+        String sigTapPatient = (String) TablePatient.getValueAt(TablePatient.getSelectedRow(), 2);
+        EditPatient inicialEditPatient = new EditPatient();
+        this.dispose();
+        inicialEditPatient.setVisible(true);
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void carregar() {

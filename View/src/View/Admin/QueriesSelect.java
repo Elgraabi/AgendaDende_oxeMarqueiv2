@@ -54,6 +54,7 @@ public class QueriesSelect extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         buscarConsulta = new javax.swing.JTextField();
         label1 = new java.awt.Label();
+        btnInf = new javax.swing.JButton();
         jPanel17 = new javax.swing.JPanel();
         btnCadastrar = new javax.swing.JToggleButton();
         btnPaciente = new javax.swing.JToggleButton();
@@ -126,7 +127,7 @@ public class QueriesSelect extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addComponent(buscarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSearch)
@@ -149,13 +150,24 @@ public class QueriesSelect extends javax.swing.JFrame {
         label1.setForeground(new java.awt.Color(0, 255, 153));
         label1.setText("Consulta");
 
+        btnInf.setText("Info");
+        btnInf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInfActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(label1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnInf)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,6 +177,8 @@ public class QueriesSelect extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnInf)
                 .addContainerGap())
         );
 
@@ -380,6 +394,11 @@ public class QueriesSelect extends javax.swing.JFrame {
         TableQuery.setModel(modeloLista);
         
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnInfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfActionPerformed
+        PopUpInfo popUpInfo = new PopUpInfo();
+        popUpInfo.setVisible(true);
+    }//GEN-LAST:event_btnInfActionPerformed
     private void carregar() {
         
         DefaultTableModel modeloLista = new DefaultTableModel();    
@@ -507,6 +526,7 @@ public class QueriesSelect extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnCadastrar;
     private javax.swing.JToggleButton btnConsulta;
     private javax.swing.JToggleButton btnGerenciarUser;
+    private javax.swing.JButton btnInf;
     private javax.swing.JButton btnLogout;
     private javax.swing.JToggleButton btnPaciente;
     private javax.swing.JToggleButton btnRelatorio;

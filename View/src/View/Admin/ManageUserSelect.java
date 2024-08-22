@@ -61,6 +61,7 @@ public class ManageUserSelect extends javax.swing.JFrame {
         label1 = new java.awt.Label();
         btnEdit = new javax.swing.JButton();
         btnDelet = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel17 = new javax.swing.JPanel();
         btnCadastrar = new javax.swing.JToggleButton();
         btnPaciente = new javax.swing.JToggleButton();
@@ -86,20 +87,20 @@ public class ManageUserSelect extends javax.swing.JFrame {
         };
         TableUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Nome", "Codigo"
+                "Nome", "Codigo", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -190,6 +191,9 @@ public class ManageUserSelect extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(51, 204, 0));
+        jButton1.setText("Ativar");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -200,6 +204,8 @@ public class ManageUserSelect extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnDelet)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnEdit)
                 .addContainerGap())
@@ -215,7 +221,8 @@ public class ManageUserSelect extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEdit)
-                    .addComponent(btnDelet))
+                    .addComponent(btnDelet)
+                    .addComponent(jButton1))
                 .addGap(15, 15, 15))
         );
 
@@ -784,6 +791,7 @@ public class ManageUserSelect extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnRelatorio;
     private javax.swing.JButton btn_NovoUsuario;
     private javax.swing.JTextField buscarUser;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel16;
