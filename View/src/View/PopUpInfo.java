@@ -67,27 +67,17 @@ public class PopUpInfo extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Paciente:");
 
-        pacientNome.setText("Nome Paciente");
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Medico:");
-
-        medicoNome.setText("Nome Medico");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Clinica:");
 
-        data.setText("Data");
-
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Data:");
 
-        clinicaaaaa.setText("clinica");
-
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Requerente:");
-
-        requerenteNome.setText("Nome Requerente");
 
         btnCancelar.setBackground(new java.awt.Color(204, 0, 0));
         btnCancelar.setText("Cancelar");
