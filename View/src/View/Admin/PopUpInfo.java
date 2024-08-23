@@ -213,8 +213,8 @@ public class PopUpInfo extends javax.swing.JFrame {
     
     public void carregar() {
         QueriesSelect queriesSelect = new QueriesSelect();
-        int idQuery = queriesSelect.getIdConsulta();
-        
+        int idQuery = queriesSelect.getIdConsultas();
+        System.out.println("");
         QueryController queryController = new QueryController();
         Consulta consulta = queryController.findById(idQuery);
         SolicitacaoDAOJDBC solicitacaoDAOJDBC = new SolicitacaoDAOJDBC();

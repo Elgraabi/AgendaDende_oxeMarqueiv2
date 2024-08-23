@@ -20,13 +20,13 @@ import javax.swing.table.DefaultTableModel;
  * @author Vitor
  */
 public class QueriesSelect extends javax.swing.JFrame {
-    private static int idConsulta = 0;
+    private static int idConsultaAgente = 0;
     /**
      * Creates new form Login
      */
     public QueriesSelect() {
         initComponents();
-        int idConsulta = this.idConsulta;
+        int idConsulta = this.idConsultaAgente;
         addWindowListener( new java.awt.event.WindowAdapter(){
             @Override
                 public void windowOpened(java.awt.event.WindowEvent e) {
@@ -355,14 +355,14 @@ public class QueriesSelect extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Object idConsulta = TableQuery.getValueAt(TableQuery.getSelectedRow(), 0);
-        this.idConsulta = (int) idConsulta;
+        this.idConsultaAgente = (int) idConsulta;
         System.out.println(idConsulta);
         View.PopUpInfo popUpInfo = new View.PopUpInfo();
         popUpInfo.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
     
     public int getIdConsulta() {
-        return this.idConsulta;
+        return this.idConsultaAgente;
     }
     
     private void carregar() {

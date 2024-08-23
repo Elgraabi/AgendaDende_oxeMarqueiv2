@@ -23,13 +23,13 @@ import Modelo.DAO.SolicitacaoDAO;
  * @author Vitor
  */
 public class QueriesSelect extends javax.swing.JFrame {
-    private static int idConsulta = 0;
+    private static int idConsultaAdm = 0;
     /**
      * Creates new form Login
      */
     public QueriesSelect() {
         initComponents();
-        int idConsulta = this.idConsulta;
+        int idConsulta = this.idConsultaAdm;
         addWindowListener( new java.awt.event.WindowAdapter(){
             @Override
                 public void windowOpened(java.awt.event.WindowEvent e) {
@@ -50,7 +50,7 @@ public class QueriesSelect extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TableQuery = new javax.swing.JTable();
+        TableQueryAdm = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         btnSearch = new javax.swing.JButton();
         buscarConsulta = new javax.swing.JTextField();
@@ -74,12 +74,12 @@ public class QueriesSelect extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(736, 503));
         jPanel1.setPreferredSize(new java.awt.Dimension(764, 525));
 
-        TableQuery = new javax.swing.JTable(){
+        TableQueryAdm = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex){
                 return false;
             }
         };
-        TableQuery.setModel(new javax.swing.table.DefaultTableModel(
+        TableQueryAdm.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -105,9 +105,9 @@ public class QueriesSelect extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        TableQuery.setFocusable(false);
-        TableQuery.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(TableQuery);
+        TableQueryAdm.setFocusable(false);
+        TableQueryAdm.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(TableQueryAdm);
 
         btnSearch.setBackground(new java.awt.Color(0, 204, 0));
         btnSearch.setText("Buscar");
@@ -330,8 +330,8 @@ public class QueriesSelect extends javax.swing.JFrame {
         telaPatientSelect.setVisible(true);
     }//GEN-LAST:event_btnPacienteActionPerformed
     
-    public int getIdConsulta() {
-        return this.idConsulta;
+    public int getIdConsultas() {
+        return this.idConsultaAdm;
     }
     
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
@@ -396,15 +396,15 @@ public class QueriesSelect extends javax.swing.JFrame {
             modeloLista.addRow(new Object[]{listaConsulta.getIdQuery(), patient.getName(), listaConsulta.getDateAndTimeConsultation(), clinic.getAddress()}
             );
         }
-        TableQuery.setModel(modeloLista);
+        TableQueryAdm.setModel(modeloLista);
         
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnInfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfActionPerformed
-        Object idConsulta = TableQuery.getValueAt(TableQuery.getSelectedRow(), 0);
-        this.idConsulta = (int) idConsulta;
+        Object idConsulta = TableQueryAdm.getValueAt(TableQueryAdm.getSelectedRow(), 0);
+        this.idConsultaAdm = (int) idConsulta;
         System.out.println(idConsulta);
-        View.PopUpInfo popUpInfo = new View.PopUpInfo();
+        PopUpInfo popUpInfo = new PopUpInfo();
         popUpInfo.setVisible(true);
     }//GEN-LAST:event_btnInfActionPerformed
    
@@ -430,7 +430,7 @@ public class QueriesSelect extends javax.swing.JFrame {
             modeloLista.addRow(new Object[]{listaConsulta.getIdQuery(), patient.getName(), listaConsulta.getDateAndTimeConsultation(), clinic.getAddress()}
             );
         }
-        TableQuery.setModel(modeloLista);
+        TableQueryAdm.setModel(modeloLista);
     }
     /**
      * @param args the command line arguments
@@ -531,7 +531,7 @@ public class QueriesSelect extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TableQuery;
+    private javax.swing.JTable TableQueryAdm;
     private javax.swing.JToggleButton btnCadastrar;
     private javax.swing.JToggleButton btnConsulta;
     private javax.swing.JToggleButton btnGerenciarUser;
