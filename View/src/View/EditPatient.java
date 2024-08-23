@@ -225,6 +225,11 @@ public class EditPatient extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tel1CampoTextoFormatado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tel1CampoTextoFormatadoActionPerformed(evt);
+            }
+        });
 
         try {
             tel2CampoTextoFormatado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
@@ -331,13 +336,13 @@ public class EditPatient extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(dataNascCampoTextoFormatado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tel2CampoTextoFormatado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
                         .addComponent(jLabel6)
-                        .addComponent(tel1CampoTextoFormatado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(12, 12, 12)
+                        .addComponent(tel1CampoTextoFormatado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tel2CampoTextoFormatado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EnderecoRuaPac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
@@ -429,6 +434,10 @@ public class EditPatient extends javax.swing.JFrame {
         tela.setVisible(true); 
         
     }//GEN-LAST:event_btn_salvarActionPerformed
+
+    private void tel1CampoTextoFormatadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tel1CampoTextoFormatadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tel1CampoTextoFormatadoActionPerformed
 
     /**
      * @param args the command line arguments

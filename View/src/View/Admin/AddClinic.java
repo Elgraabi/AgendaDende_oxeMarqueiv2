@@ -268,7 +268,7 @@ public class AddClinic extends javax.swing.JFrame {
             ClinicaControle clinicaController = new ClinicaControle();
             if(clinicaController.adicionarClinica(clinica)){
                 JOptionPane.showMessageDialog(null, "Clinica cadastrada com sucesso");
-                HomeScreenAdmin homeScreen = new HomeScreenAdmin();
+                RegisterClinic homeScreen = new RegisterClinic();
                 this.dispose();
                 homeScreen.setVisible(true);
             }

@@ -126,9 +126,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="pacientNome">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Nome Paciente"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -139,9 +136,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="medicoNome">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Nome Medico"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
@@ -152,9 +146,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="data">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Data"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
@@ -165,9 +156,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="clinicaaaaa">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="clinica"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
@@ -178,9 +166,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="requerenteNome">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Nome Requerente"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnCancelar">
           <Properties>
