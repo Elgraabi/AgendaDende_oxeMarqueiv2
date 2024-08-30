@@ -388,7 +388,7 @@ public class EditDoctor extends javax.swing.JFrame {
         List<Clinica> list = clinicController.buscarClinicas();
         for (Clinica clinic : list) {
             String[] aaa = clinic.toString().split(",");
-            String miaumiau = aaa[1] + ", " + aaa[2] + ", " + aaa[3] + ", " + aaa[4]  + ", " + aaa[5];
+            String miaumiau = aaa[0] + ", " + aaa[1] + ", " + aaa[2] + ", " + aaa[3]  + ", " + aaa[4];
             if(miaumiau.equals(clinicaSelecionar)){
                 String[] arrayIds = clinic.toString().split(",");
                 clinicaSelecionada = arrayIds[0];
@@ -433,7 +433,7 @@ public class EditDoctor extends javax.swing.JFrame {
         for (Clinica clinica : listaClinicas) {
             if(clinica.getStatus().equalsIgnoreCase("ativo")){
                 String[] arrayIds = clinica.toString().split(",");
-                String id = arrayIds[1] + ", " + arrayIds[2] + ", " + arrayIds[3] + ", " + arrayIds[4] + ", " + arrayIds[5];
+                String id = arrayIds[0] + ", " + arrayIds[1] + ", " + arrayIds[2] + ", " + arrayIds[3] + ", " + arrayIds[4];
                 modeloLista.addElement(id);
             }
         }
